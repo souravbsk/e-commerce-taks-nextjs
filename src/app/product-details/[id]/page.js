@@ -5,6 +5,9 @@ import "@smastrom/react-rating/style.css";
 import {TbTruckDelivery} from "react-icons/tb"
 import { FaCalendar } from "react-icons/fa";
 import ProductImage from "./ProductImage";
+import { useDispatch } from "react-redux";
+import uniqid from 'uniqid';
+import { add } from "@/Store/CartSlice/CartSlice";
 
 const ProjectDetails = ({ params }) => {
   const [product, setProduct] = useState({});
@@ -16,6 +19,12 @@ const ProjectDetails = ({ params }) => {
       });
   }, [params.id]);
   console.log(product);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    const productWithUniqueId = { ...product, uniqId: uniqid() };   
+    dispatch(add(productWithUniqueId))
+  }
   return (
     <div className="container">
       <div>
@@ -49,7 +58,7 @@ const ProjectDetails = ({ params }) => {
           </div>
           <div className="flex mt-8 md:items-center gap-5 flex-col md:flex-row">
             <button className="px-10 py-2 rounded-3xl text-white duration-300 bg-[#003D2A] border-[#003D2A] border font-semibold hover:bg-transparent hover:text-[#003D2A]">Buy Now</button>
-            <button className="px-10 py-2 rounded-3xl hover:bg-[#003D2A] duration-300 text-[#003D2A] hover:text-white border-[#003D2A] border">Add to Cart</button>
+            <button onClick={() => handleAddToCart(product)} className="px-10 py-2 rounded-3xl hover:bg-[#003D2A] duration-300 text-[#003D2A] hover:text-white border-[#003D2A] border">Add to Cart</button>
           </div>
           <div className="mt-12">
             <ul className=" border rounded-lg divide-y-2">
