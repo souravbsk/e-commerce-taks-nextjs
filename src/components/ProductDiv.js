@@ -8,8 +8,9 @@ import Link from "next/link";
 const ProductDiv = ({ product }) => {
   const { id, thumbnail, title, price, description, rating } = product || {};
   return (
-    <Link href={`/product-details/${id}`}>
-      <div className="flex h-[550px] relative border gap-5 rounded-lg overflow-hidden flex-col">
+  
+      <div className="flex h-[500px] relative border gap-5 rounded-lg overflow-hidden flex-col">
+        <Link href={`/product-details/${id}`}>
         <div className="bg-[#F5F6F6] ">
           <Image
             src={thumbnail}
@@ -19,9 +20,10 @@ const ProductDiv = ({ product }) => {
             alt="thumbnail"
           ></Image>
         </div>
+          </Link>
         <div className="p-2 flex flex-col justify-between gap-2">
           <div className="flex mt-auto gap-4 justify-between">
-            <h2 className="text-lg font-bold">{title}</h2>
+            <h2 className=" font-bold">{title}</h2>
             <p className="text-lg font-bold">
               <sup>$</sup>
               {price}
@@ -49,7 +51,6 @@ const ProductDiv = ({ product }) => {
           <FaRegHeart></FaRegHeart>
         </p>
       </div>
-    </Link>
   );
 };
 

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import "@smastrom/react-rating/style.css";
 import {TbTruckDelivery} from "react-icons/tb"
 import { FaCalendar } from "react-icons/fa";
+import ProductImage from "./ProductImage";
 
 const ProjectDetails = ({ params }) => {
   const [product, setProduct] = useState({});
@@ -22,8 +23,10 @@ const ProjectDetails = ({ params }) => {
           Home / product-details / {product?.brand} / {product?.title}
         </p>
       </div>
-      <div className="flex my-12 flex-col md:flex-row">
-        <div className="w-full"></div>
+      <div className="flex gap-12 my-12 flex-col md:flex-row">
+        <div className="w-full">
+          <ProductImage product={product}></ProductImage>
+        </div>
         <div className="w-full">
           <h2 className="text-xl mb-3 md:text-4xl font-bold">
             {product?.title}
@@ -44,7 +47,7 @@ const ProjectDetails = ({ params }) => {
             <p className="font-medium">category: {product?.category}</p>
             <p className="font-medium">stock: {product?.stock}</p>
           </div>
-          <div className="flex mt-8 items-center gap-5 flex-col md:flex-row">
+          <div className="flex mt-8 md:items-center gap-5 flex-col md:flex-row">
             <button className="px-10 py-2 rounded-3xl text-white duration-300 bg-[#003D2A] border-[#003D2A] border font-semibold hover:bg-transparent hover:text-[#003D2A]">Buy Now</button>
             <button className="px-10 py-2 rounded-3xl hover:bg-[#003D2A] duration-300 text-[#003D2A] hover:text-white border-[#003D2A] border">Add to Cart</button>
           </div>
