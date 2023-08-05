@@ -1,6 +1,7 @@
 import Header from "@/Shared/Header/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import ReduxProvider from "@/Providers/ReduxProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html data-theme="light" lang="en">
       <body className={inter.className}>
-        <Header></Header>
-        {children}
+        <ReduxProvider>
+          <Header></Header>
+
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

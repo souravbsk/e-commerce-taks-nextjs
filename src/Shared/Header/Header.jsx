@@ -1,9 +1,13 @@
+"use client"
 import React from "react";
 import TopHeader from "../TopHeader/TopHeader";
 import Link from "next/link";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const productStore = useSelector(state => state.cart);
+  console.log(productStore);
   const navitem = (
     <>
       <li>
@@ -49,8 +53,8 @@ const Header = () => {
                 />
               </div>
             </li>
-            <li className="flex items-center gap-3 font-medium"><FaUserAlt></FaUserAlt> <Link href="/">Account</Link></li>
-            <li className="flex items-center gap-3 font-medium"><FaShoppingCart></FaShoppingCart> <Link href="/">Cart</Link></li>
+            <li > <Link className="flex items-center gap-3 font-medium" href="/"><FaUserAlt></FaUserAlt> Account</Link></li>
+            <li className="relative" > <Link className="flex items-center gap-3 font-medium" href="/cart"><FaShoppingCart></FaShoppingCart> Cart <span className="absolute left-0 text-sm -top-4 bg-[#013D29] px-2 py-1 rounded-full text-white">{productStore?.length} </span></Link></li>
           </ul>
         </div>
       </nav>

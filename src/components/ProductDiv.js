@@ -5,8 +5,18 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { FaRegHeart } from "react-icons/fa";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { add } from "@/Store/CartSlice/CartSlice";
+import uniqid from 'uniqid';
 const ProductDiv = ({ product }) => {
   const { id, thumbnail, title, price, description, rating } = product || {};
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    const productWithUniqueId = { ...product, uniqId: uniqid() };   
+    dispatch(add(productWithUniqueId))
+  }
+
   return (
   
       <div className="flex h-[500px] relative border gap-5 rounded-lg overflow-hidden flex-col">
@@ -42,7 +52,7 @@ const ProductDiv = ({ product }) => {
                 value={rating}
               />
             </div>
-            <button className="rounded-3xl font-semibold hover:bg-[#003D2A] hover:text-white duration-300 border-2  border-[#003D2A] text-[#003D2A] px-4 py-2">
+            <button onClick={() => handleAddToCart(product)} className="rounded-3xl font-semibold hover:bg-[#003D2A] hover:text-white duration-300 border-2  border-[#003D2A] text-[#003D2A] px-4 py-2">
               Add to Cart
             </button>
           </div>
